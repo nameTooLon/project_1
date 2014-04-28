@@ -65,11 +65,8 @@ def calculate_dh_secret(their_public, my_private):
     # guidelines, however I could not get it working. Luke said it was
     # beyond the scope of this stage.
 
-    # Instead, I simplified by changing the algo to SHA-1,
-    # and added a salt string (hardcoded) This is not ideal in the real world.
-    print(shared_secret)
+    # add a salt string (hardcoded) This is not ideal in the real world.
     shared_sec_bytes = hex(shared_secret)
-    print(shared_sec_bytes)
     shared_hash = SHA256.new(bytes(shared_sec_bytes, "ascii"))
     shared_hash.update(bytes("hardcodedSalt", "ascii"))
     return shared_hash.hexdigest()
@@ -108,5 +105,6 @@ def calculate_dh_secret(their_public, my_private):
     shared_hash = KM1 + KM2 + KM3
     return shared_hash
     """
+
 
 #TODO: write funtion that will generate AES-256 key and transmit it using KEK
